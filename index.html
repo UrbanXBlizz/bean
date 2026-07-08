@@ -8,15 +8,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'JetBrains Mono', monospace; background-color: #08080a; color: #cfcfd6; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 24px 16px; overflow: hidden; }
+        body { font-family: 'JetBrains Mono', monospace; background-color: #08080a; color: #cfcfd6; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 24px 16px; overflow: hidden; transition: background 0.3s ease, color 0.3s ease; }
         .card-wrapper { position: relative; width: 100%; max-width: 380px; border-radius: 22px; padding: 2px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.8); }
         .card-wrapper::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: conic-gradient(from 0deg, transparent 0%, transparent 75%, #ef4444 90%, #ff8888 95%, transparent 100%); animation: rotateGlow 4s linear infinite; }
         @keyframes rotateGlow { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-        .card { position: relative; width: 100%; background: #0f0f13; border-radius: 20px; padding: 28px 22px; z-index: 1; }
+        .card { position: relative; width: 100%; background: #0f0f13; border-radius: 20px; padding: 28px 22px; z-index: 1; transition: background 0.3s ease, border-color 0.3s ease; }
         
-        .status-bar { display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #6b6b7b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+        .status-bar { display: flex; justify-content: space-between; align-items: center; font-size: 0.7rem; color: #6b6b7b; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; transition: color 0.3s ease; }
         
-        /* Smooth, Slow, Endless Flowing Red Glowing Dots Line */
         .animated-divider {
             position: relative;
             width: 100%;
@@ -25,14 +24,15 @@
             margin-bottom: 24px;
             overflow: hidden;
             border-radius: 2px;
+            transition: background 0.3s ease;
         }
 
         .animated-divider::before {
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 300%;
+            left: 0;
+            width: 100%;
             height: 100%;
             background: radial-gradient(circle, #ffffff 1px, #ef4444 2px, transparent 3px);
             background-size: 25px 4px;
@@ -46,54 +46,61 @@
 
         .status-dot { width: 6px; height: 6px; background-color: #22c55e; border-radius: 50%; display: inline-block; box-shadow: 0 0 8px #22c55e; animation: blinkDot 1.2s ease-in-out infinite; margin-right: 6px; }
         @keyframes blinkDot { 0%, 100% { opacity: 0.3; transform: scale(0.9); box-shadow: 0 0 4px #22c55e; } 50% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 14px #22c55e; } }
+        
         .profile-area { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
         .profile-left { display: flex; align-items: center; gap: 16px; }
         .avatar { width: 64px; height: 64px; border-radius: 12px; object-fit: cover; border: 1px solid #2a2a38; }
-        .identity h1 { font-family: 'Instrument Serif', serif; font-size: 1.8rem; color: #f1f1f6; font-weight: 400; line-height: 1; margin-bottom: 4px; }
-        .identity p { font-size: 0.75rem; color: #7c7c8c; }
+        .identity h1 { font-family: 'Instrument Serif', serif; font-size: 1.8rem; color: #f1f1f6; font-weight: 400; line-height: 1; margin-bottom: 4px; transition: color 0.3s ease; }
+        .identity p { font-size: 0.75rem; color: #7c7c8c; transition: color 0.3s ease; }
         
-        .logo-container { 
-            width: 64px; 
-            height: 64px; 
-            position: relative;
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-        }
-        
-        .spinning-logo {
-            width: 52px;
-            height: 52px;
-            animation: trueCenterSpin 2.5s linear infinite;            
-        }
-
-        .spinning-logo svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        @keyframes trueCenterSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
+        .logo-container { width: 64px; height: 64px; position: relative; display: flex; align-items: center; justify-content: center; }
+        .spinning-logo { width: 52px; height: 52px; animation: trueCenterSpin 2.5s linear infinite; }
+        .spinning-logo svg { width: 100%; height: 100%; }
+        @keyframes trueCenterSpin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         .widgets-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
-        .widget-box { background: #14141a; border: 1px solid #1f1f2a; border-radius: 10px; padding: 10px 12px; text-align: left; }
-        .widget-title { font-size: 0.6rem; color: #6b6b7b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
-        .widget-title i { color: #ef4444; }
-        .widget-value { font-size: 0.82rem; color: #f1f1f6; font-weight: 500; }
+        .widget-box { background: #14141a; border: 1px solid #1f1f2a; border-radius: 10px; padding: 10px 12px; text-align: left; transition: background 0.3s ease, border-color 0.3s ease; }
+        .widget-title { font-size: 0.6rem; color: #6b6b7b; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; transition: color 0.3s ease; }
+        .widget-title i { color: #ef4444; transition: color 0.3s ease; }
+        .widget-value { font-size: 0.82rem; color: #f1f1f6; font-weight: 500; transition: color 0.3s ease; }
+        
         .greet-btn { width: 100%; background: #14141a; border: 1px solid #2a2a3c; color: #e4e4ed; padding: 12px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; cursor: pointer; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease; }
-        .greet-btn i { color: #ef4444; }
+        .greet-btn i { color: #ef4444; transition: color 0.3s ease; }
         .greet-btn:hover { background: #1a1a24; border-color: #ef4444; color: #ffffff; }
+        
         .links-stack { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
-        .link-row { display: flex; align-items: center; justify-content: space-between; background: #14141a; border: 1px solid #1f1f2a; padding: 13px 16px; border-radius: 10px; color: #e4e4ed; text-decoration: none; font-size: 0.8rem; transition: all 0.2s ease; }
+        .link-row { display: flex; align-items: center; justify-content: space-between; background: #14141a; border: 1px solid #1f1f2a; padding: 13px 16px; border-radius: 10px; color: #e4e4ed; text-decoration: none; font-size: 0.8rem; transition: all 0.2s ease; cursor: pointer; width: 100%; font-family: 'JetBrains Mono', monospace; }
         .link-row span { display: flex; align-items: center; gap: 10px; }
-        .link-row i { color: #ef4444; }
-        .link-row .arrow { font-size: 0.7rem; color: #4a4a5c; transition: transform 0.2s; }
+        .link-row i { color: #ef4444; transition: color 0.3s ease; }
+        .link-row .arrow { font-size: 0.7rem; color: #4a4a5c; transition: transform 0.2s, color 0.3s ease; }
         .link-row:hover { background: #1a1a24; border-color: #ef4444; color: #ffffff; }
         .link-row:hover .arrow { transform: translateX(3px); color: #ef4444; }
-        .footer-marquee { border-top: 1px solid #16161f; padding-top: 14px; overflow: hidden; white-space: nowrap; font-size: 0.72rem; color: #6b6b7b; text-transform: uppercase; letter-spacing: 0.08em; }
-        .footer-marquee marquee { color: #ef4444; }
+        
+        .footer-marquee { border-top: 1px solid #16161f; padding-top: 14px; overflow: hidden; white-space: nowrap; font-size: 0.72rem; color: #6b6b7b; text-transform: uppercase; letter-spacing: 0.08em; transition: border-color 0.3s ease; }
+        .footer-marquee marquee { color: #ef4444; transition: color 0.3s ease; }
+
+        /* Full High-Contrast Light Mode Rules */
+        body.light-mode { background-color: #f0f0f5; color: #1f1f2e; }
+        body.light-mode .card { background: #ffffff; border: 1px solid #e1e1ec; }
+        body.light-mode .status-bar { color: #5a5a70; }
+        body.light-mode .identity h1 { color: #11111a; }
+        body.light-mode .identity p { color: #6e6e85; }
+        body.light-mode .widget-box { background: #f7f7fc; border-color: #dedee9; }
+        body.light-mode .widget-title { color: #5a5a70; }
+        body.light-mode .widget-value { color: #11111a; }
+        body.light-mode .greet-btn { background: #f7f7fc; border-color: #cbccc6; color: #1f1f2e; }
+        body.light-mode .link-row { background: #f7f7fc; border-color: #dedee9; color: #1f1f2e; }
+        body.light-mode .animated-divider { background: #e5e5f0; }
+        body.light-mode .footer-marquee { border-color: #e5e5f0; color: #5a5a70; }
+
+        /* Light Mode High Contrast Accents & Multi-Dot Pattern Match */
+        body.light-mode .widget-title i,
+        body.light-mode .greet-btn i,
+        body.light-mode .link-row i,
+        body.light-mode .footer-marquee marquee { color: #b91c1c; }
+        body.light-mode .link-row:hover { background: #ececf5; border-color: #b91c1c; color: #000000; }
+        body.light-mode .link-row:hover .arrow { color: #b91c1c; }
+        body.light-mode .animated-divider::before { background: radial-gradient(circle, #1f1f2e 1px, #b91c1c 2px, transparent 3px); background-size: 25px 4px; }
     </style>
 </head>
 <body>
@@ -140,12 +147,12 @@
                 <a href="https://uk.pinterest.com/ashishreji52/insta/" target="_blank" class="link-row">
                     <span><i class="fa-regular fa-eye"></i> visual archive.</span><i class="fa-solid fa-arrow-right arrow"></i>
                  </a>
-                <a href="https://.com" target="_blank" class="link-row">
-                    <span><i class="fa-solid fa-code"></i> code stash.</span><i class="fa-solid fa-arrow-right arrow"></i>
-                </a>
                 <a href="https://www.instagram.com/im.ashish.exe/" target="_blank" class="link-row">
                     <span><i class="fa-regular fa-paper-plane"></i> direct line.</span><i class="fa-solid fa-arrow-right arrow"></i>
                 </a>
+                <button onclick="toggleTheme()" class="link-row">
+                    <span><i id="theme-icon" class="fa-solid fa-moon"></i> <span id="theme-text">day mode.</span></span><i class="fa-solid fa-arrow-right arrow"></i>
+                </button>
             </div>
             <div class="footer-marquee">
                 <marquee direction="left" scrollamount="4">Killer Bean:"Just a bean trying to get some sleep." | "You've been decaffeinated."</marquee>
@@ -156,6 +163,12 @@
         function cycleGreeting() {
             document.getElementById('greet-btn-text').textContent = "glad you're here";
             document.getElementById('status-text').textContent = "online / glad you're here";
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('theme-icon').className = isLight ? "fa-solid fa-sun" : "fa-solid fa-moon";
+            document.getElementById('theme-text').textContent = isLight ? "night mode." : "day mode.";
         }
         function updateClock() {
             const now = new Date();
