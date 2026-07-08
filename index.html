@@ -44,8 +44,8 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 300%;
+            left: 0;
+            width: 100%;
             height: 100%;
             background: radial-gradient(circle, #ffffff 1px, #ef4444 2px, transparent 3px);
             background-size: 25px 4px;
@@ -87,4 +87,62 @@
         .link-row i { color: #ef4444; transition: color 0.3s ease; }
         .link-row .arrow { font-size: 0.7rem; color: #4a4a5c; transition: transform 0.2s, color 0.3s ease; }
         .link-row:hover { background: #1a1a24; border-color: #ef4444; color: #ffffff; }
-        .link-row:hover .arrow { transform: translateX(3px);
+        .link-row:hover .arrow { transform: translateX(3px); color: #ef4444; }
+        
+        .footer-marquee { border-top: 1px solid #16161f; padding-top: 14px; overflow: hidden; white-space: nowrap; font-size: 0.72rem; color: #6b6b7b; text-transform: uppercase; letter-spacing: 0.08em; transition: border-color 0.3s ease; }
+        .footer-marquee marquee { color: #ef4444; transition: color 0.3s ease; }
+
+        /* Full High-Contrast Light Mode Rules */
+        body.light-mode { background-color: #f0f0f5; color: #1f1f2e; }
+        body.light-mode .card { background: #ffffff; border: 1px solid #e1e1ec; }
+        body.light-mode .status-bar { color: #5a5a70; }
+        body.light-mode .identity h1 { color: #11111a; }
+        body.light-mode .identity p { color: #6e6e85; }
+        body.light-mode .widget-box { background: #f7f7fc; border-color: #dedee9; }
+        body.light-mode .widget-title { color: #5a5a70; }
+        body.light-mode .widget-value { color: #11111a; }
+        body.light-mode .greet-btn { background: #f7f7fc; border-color: #cbccc6; color: #1f1f2e; }
+        body.light-mode .link-row { background: #f7f7fc; border-color: #dedee9; color: #1f1f2e; }
+        body.light-mode .animated-divider { background: #e5e5f0; }
+        body.light-mode .footer-marquee { border-color: #e5e5f0; color: #5a5a70; }
+
+        /* Light Mode High Contrast Accents & Dense Flowing Dots */
+        body.light-mode .widget-title i,
+        body.light-mode .greet-btn i,
+        body.light-mode .link-row i,
+        body.light-mode .footer-marquee marquee { color: #b91c1c; }
+        body.light-mode .link-row:hover { background: #ececf5; border-color: #b91c1c; color: #000000; }
+        body.light-mode .link-row:hover .arrow { color: #b91c1c; }
+        body.light-mode .animated-divider::before { background: radial-gradient(circle, #1f1f2e 1px, #b91c1c 2px, transparent 3px); background-size: 25px 4px; }
+    </style>
+</head>
+<body>
+    <div class="card-wrapper">
+        <div class="card">
+            <div class="status-bar">
+                <span><span class="status-dot"></span><span id="status-text">online / ready</span></span>
+                <span id="random-id">ID // 001</span>
+            </div>
+            <div class="animated-divider"></div>
+            <div class="profile-area">
+                <div class="profile-left">
+                    <img src="https://i.postimg.cc/gJDWJKWc/bean.jpg" alt="bean.jpg" class="avatar">
+                    <div class="identity">
+                        <h1>Bean</h1>
+                        <p>@im.ashish.exe</p>
+                    </div>
+                </div>
+                <div class="logo-container">
+                    <div class="spinning-logo">
+                        <svg viewBox="0 0 100 100">
+                            <circle cx="50" cy="50" r="46" fill="#eab308" stroke="#000000" stroke-width="6"/>
+                            <circle cx="50" cy="50" r="10" fill="#000000"/>
+                            <path d="M50 50 L35 15 A42 42 0 0 1 65 15 Z" fill="#000000" transform="rotate(0 50 50)"/>
+                            <path d="M50 50 L35 15 A42 42 0 0 1 65 15 Z" fill="#000000" transform="rotate(120 50 50)"/>
+                            <path d="M50 50 L35 15 A42 42 0 0 1 65 15 Z" fill="#000000" transform="rotate(240 50 50)"/>
+                            <circle cx="50" cy="50" r="6" fill="#eab308"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="widgets-
