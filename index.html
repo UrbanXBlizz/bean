@@ -31,8 +31,8 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
-            width: 300%;
+            left: 0;
+            width: 100%;
             height: 100%;
             background: radial-gradient(circle, #ffffff 1px, #ef4444 2px, transparent 3px);
             background-size: 25px 4px;
@@ -167,11 +167,11 @@
         }
         generateRandomID();
 
-        // Check if opened from Instagram browser
+        // Robust Instagram Browser Detection
         function checkInstagramSource() {
-            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            if (userAgent.indexOf('Instagram') > -1) {
-                document.getElementById('greet-btn-text').textContent = "hello from instagram";
+            const ua = navigator.userAgent || navigator.vendor || window.opera;
+            if (/Instagram/i.test(ua)) {
+                document.getElementById('greet-btn-text').textContent = "hello friend";
             }
         }
         checkInstagramSource();
