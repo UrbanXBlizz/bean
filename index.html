@@ -162,10 +162,19 @@
     <script>
         // Generate random ID on page load
         function generateRandomID() {
-            const randomNum = Math.floor(100 + Math.random() * 900); // 3-digit number between 100 and 999
+            const randomNum = Math.floor(100 + Math.random() * 900);
             document.getElementById('random-id').textContent = `ID // ${randomNum}`;
         }
         generateRandomID();
+
+        // Check if opened from Instagram browser
+        function checkInstagramSource() {
+            const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            if (userAgent.indexOf('Instagram') > -1) {
+                document.getElementById('greet-btn-text').textContent = "hello from instagram";
+            }
+        }
+        checkInstagramSource();
 
         function cycleGreeting() {
             document.getElementById('greet-btn-text').textContent = "glad you're here";
