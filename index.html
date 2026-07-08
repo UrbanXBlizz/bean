@@ -120,7 +120,7 @@
     <div class="card-wrapper">
         <div class="card">
             <div class="status-bar">
-                <span><span class="status-dot"></span><span id="status-text">online / ready</span></span>
+                <span><span class="status-dot"></span><span>ONLINE / <span class="urbz-text" id="status-text">READY</span></span></span>
                 <span id="random-id">ID // 001</span>
             </div>
             <div class="animated-divider"></div>
@@ -155,7 +155,7 @@
                     <div class="widget-value" id="countdown">--d</div>
                 </div>
             </div>
-            <button class="greet-btn" onclick="cycleGreeting()"><i class="fa-regular fa-comment-dots"></i> <span id="greet-btn-text"><span class="urbz-text">URBZ</span></span></button>
+            <button class="greet-btn" onclick="cycleGreeting()"><i class="fa-regular fa-comment-dots"></i> <span id="greet-btn-text">welcome friend</span></button>
             <div class="links-stack">
                 <a href="https://uk.pinterest.com/ashishreji52/insta/" target="_blank" class="link-row">
                     <span><i class="fa-regular fa-eye"></i> visual archive.</span><i class="fa-solid fa-arrow-right arrow"></i>
@@ -184,14 +184,14 @@
         function checkInstagramSource() {
             const params = new URLSearchParams(window.location.search);
             if (params.get('ref') === 'insta') {
-                document.getElementById('greet-btn-text').innerHTML = '<span class="urbz-text">URBZ</span>';
+                document.getElementById('greet-btn-text').textContent = "hello friend";
             }
         }
         checkInstagramSource();
 
         function cycleGreeting() {
-            document.getElementById('greet-btn-text').innerHTML = '<span class="urbz-text">URBZ</span>';
-            document.getElementById('status-text').textContent = "online / glad you're here";
+            document.getElementById('greet-btn-text').textContent = "glad you're here";
+            document.getElementById('status-text').textContent = "URBZ";
         }
         function toggleTheme() {
             document.body.classList.toggle('light-mode');
