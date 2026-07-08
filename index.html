@@ -31,8 +31,8 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -100%;
+            width: 300%;
             height: 100%;
             background: radial-gradient(circle, #ffffff 1px, #ef4444 2px, transparent 3px);
             background-size: 25px 4px;
@@ -93,7 +93,7 @@
         body.light-mode .animated-divider { background: #e5e5f0; }
         body.light-mode .footer-marquee { border-color: #e5e5f0; color: #5a5a70; }
 
-        /* Light Mode High Contrast Accents & Multi-Dot Pattern Match */
+        /* Light Mode High Contrast Accents & Dense Flowing Dots */
         body.light-mode .widget-title i,
         body.light-mode .greet-btn i,
         body.light-mode .link-row i,
@@ -108,7 +108,7 @@
         <div class="card">
             <div class="status-bar">
                 <span><span class="status-dot"></span><span id="status-text">online / ready</span></span>
-                <span>ID // 001</span>
+                <span id="random-id">ID // 001</span>
             </div>
             <div class="animated-divider"></div>
             <div class="profile-area">
@@ -160,6 +160,13 @@
         </div>
     </div>
     <script>
+        // Generate random ID on page load
+        function generateRandomID() {
+            const randomNum = Math.floor(100 + Math.random() * 900); // 3-digit number between 100 and 999
+            document.getElementById('random-id').textContent = `ID // ${randomNum}`;
+        }
+        generateRandomID();
+
         function cycleGreeting() {
             document.getElementById('greet-btn-text').textContent = "glad you're here";
             document.getElementById('status-text').textContent = "online / glad you're here";
