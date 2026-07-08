@@ -31,8 +31,8 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            width: 100%;
+            left: -100%;
+            width: 300%;
             height: 100%;
             background: radial-gradient(circle, #ffffff 1px, #ef4444 2px, transparent 3px);
             background-size: 25px 4px;
@@ -125,4 +125,71 @@
                             <circle cx="50" cy="50" r="46" fill="#eab308" stroke="#000000" stroke-width="6"/>
                             <circle cx="50" cy="50" r="10" fill="#000000"/>
                             <path d="M50 50 L35 15 A42 42 0 0 1 65 15 Z" fill="#000000" transform="rotate(0 50 50)"/>
-                            <path d="M50 50 L35 15 A42 42 0 0 1 65 15 Z" fill="#000000" transform="rotate(120 50 5
+                            <path d="M50 50 L35 15 A42 42 0 0 1 65 15 Z" fill="#000000" transform="rotate(120 50 50)"/>
+                            <path d="M50 50 L35 15 A42 42 0 0 1 65 15 Z" fill="#000000" transform="rotate(240 50 50)"/>
+                            <circle cx="50" cy="50" r="6" fill="#eab308"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="widgets-grid">
+                <div class="widget-box">
+                    <div class="widget-title"><i class="fa-regular fa-clock"></i> Local Time</div>
+                    <div class="widget-value" id="live-clock">00:00:00</div>
+                </div>
+                <div class="widget-box">
+                    <div class="widget-title"><i class="fa-solid fa-hourglass-half"></i> New Year In</div>
+                    <div class="widget-value" id="countdown">--d</div>
+                </div>
+            </div>
+            <button class="greet-btn" onclick="cycleGreeting()"><i class="fa-regular fa-comment-dots"></i> <span id="greet-btn-text">welcome friend</span></button>
+            <div class="links-stack">
+                <a href="https://uk.pinterest.com/ashishreji52/insta/" target="_blank" class="link-row">
+                    <span><i class="fa-regular fa-eye"></i> visual archive.</span><i class="fa-solid fa-arrow-right arrow"></i>
+                 </a>
+                <a href="https://www.instagram.com/im.ashish.exe/" target="_blank" class="link-row">
+                    <span><i class="fa-regular fa-paper-plane"></i> direct line.</span><i class="fa-solid fa-arrow-right arrow"></i>
+                </a>
+                <button onclick="toggleTheme()" class="link-row">
+                    <span><i id="theme-icon" class="fa-solid fa-moon"></i> <span id="theme-text">day mode.</span></span><i class="fa-solid fa-arrow-right arrow"></i>
+                </button>
+            </div>
+            <div class="footer-marquee">
+                <marquee direction="left" scrollamount="4">Killer Bean:"Just a bean trying to get some sleep." | "You've been decaffeinated."</marquee>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Generate random ID on page load
+        function generateRandomID() {
+            const randomNum = Math.floor(100 + Math.random() * 900); // 3-digit number between 100 and 999
+            document.getElementById('random-id').textContent = `ID // ${randomNum}`;
+        }
+        generateRandomID();
+
+        function cycleGreeting() {
+            document.getElementById('greet-btn-text').textContent = "glad you're here";
+            document.getElementById('status-text').textContent = "online / glad you're here";
+        }
+        function toggleTheme() {
+            document.body.classList.toggle('light-mode');
+            const isLight = document.body.classList.contains('light-mode');
+            document.getElementById('theme-icon').className = isLight ? "fa-solid fa-sun" : "fa-solid fa-moon";
+            document.getElementById('theme-text').textContent = isLight ? "night mode." : "day mode.";
+        }
+        function updateClock() {
+            const now = new Date();
+            document.getElementById('live-clock').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+        function updateCountdown() {
+            const now = new Date();
+            const target = new Date(`January 1, ${now.getFullYear() + 1} 00:00:00`);
+            document.getElementById('countdown').textContent = `${Math.floor((target - now) / (1000 * 60 * 60 * 24))}d`;
+        }
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+    </script>
+</body>
+</html>
